@@ -23,7 +23,7 @@ __device__ float CalDistance(float X, float R)
 __device__ float CalScale(int i, int N)
 {
 	float result = 0;
-	for (int j = 0;j < 100;j++)
+	for (int j = 0;j < 2;j++)
 	{
 		result += j* i*(10 - 0) / (N - 1.0);
 	}
@@ -108,6 +108,6 @@ int main()
 	double protime = (timeend - timebegin);
 
 	printf("¼ÆËãºÄÊ±£º%fms", protime);
-	getchar();
+	//getchar();
 	return 0;
 }
