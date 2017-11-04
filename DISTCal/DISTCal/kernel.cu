@@ -31,7 +31,8 @@ __device__ float CalScale(int i, int N)
 //R: 参考点
 __global__ void DistKernel(float *dev_D, int N, float R)
 {
-	int i = threadIdx.x;
+	int i = blockDim.x*blockIdx.x + threadIdx.x;
+	if (i >= N)return;
 	float result;
 	float scale;
 	scale = CalScale(i, N);
@@ -41,7 +42,7 @@ __global__ void DistKernel(float *dev_D, int N, float R)
 
 int main()
 {
-	int const N = 10000;//点数
+	int const N = 20000;//点数
 	float R = 6.0f;//参考点
 	float D[N] = { 0 };//计算结果
 	float* dev_D = 0;
@@ -62,7 +63,7 @@ int main()
 	}
 
 	//调用核函数
-	DistKernel << <1, N >> >(dev_D, N, R);
+	DistKernel << <(N+1023)/1024, 1024 >> >(dev_D, N, R);
 
 	cudaStatus = cudaGetLastError();
 	if (cudaStatus != cudaSuccess) {
