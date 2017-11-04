@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <malloc.h>
+#include <time.h>
 
 //距离计算函数
 //X：输入点
@@ -22,7 +23,10 @@ __device__ float CalDistance(float X, float R)
 __device__ float CalScale(int i, int N)
 {
 	float result = 0;
-	result = i*(10 - 0) / (N - 1.0);
+	for (int j = 0;j < 100;j++)
+	{
+		result += j* i*(10 - 0) / (N - 1.0);
+	}
 	return result;
 }
 
@@ -43,7 +47,9 @@ __global__ void DistKernel(float *dev_D, int N, float R)
 
 int main()
 {
-	int const N = 600000000;//点数
+	clock_t timebegin = clock();
+
+	int const N = 100000000;//点数
 	float R = 6.0f;//参考点
 	float* D  =  (float*)malloc(N*sizeof(float));//计算结果
 	float* dev_D = 0;
@@ -97,7 +103,11 @@ int main()
 	}
 
 	printf("D[50]=%f\r\n", D[50]);
-	printf("D[40000000]=%f", D[40000000]);
+
+	clock_t timeend = clock();
+	double protime = (timeend - timebegin);
+
+	printf("计算耗时：%fms", protime);
 	getchar();
 	return 0;
 }

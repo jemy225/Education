@@ -1,0 +1,5 @@
+﻿  DIST_CPU.cpp
+d:\github\education\dist_cpu\dist_cpu\dist_cpu.cpp(14): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+d:\github\education\dist_cpu\dist_cpu\dist_cpu.cpp(27): warning C4244: “+=”: 从“double”转换到“float”，可能丢失数据
+  DIST_CPU.vcxproj -> D:\Github\Education\DIST_CPU\x64\Debug\DIST_CPU.exe
+  DIST_CPU.vcxproj -> D:\Github\Education\DIST_CPU\x64\Debug\DIST_CPU.pdb (Full PDB)
