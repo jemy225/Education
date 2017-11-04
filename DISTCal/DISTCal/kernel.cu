@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <malloc.h>
+
 //距离计算函数
 //X：输入点
 //R：参考点
@@ -42,7 +43,7 @@ __global__ void DistKernel(float *dev_D, int N, float R)
 
 int main()
 {
-	int const N = 300000;//点数
+	int const N = 600000000;//点数
 	float R = 6.0f;//参考点
 	float* D  =  (float*)malloc(N*sizeof(float));//计算结果
 	float* dev_D = 0;
@@ -95,7 +96,8 @@ int main()
 		return -1;
 	}
 
-	printf("D[50]=%f", D[50]);
+	printf("D[50]=%f\r\n", D[50]);
+	printf("D[40000000]=%f", D[40000000]);
 	getchar();
 	return 0;
 }
