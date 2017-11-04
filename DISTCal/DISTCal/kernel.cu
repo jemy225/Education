@@ -2,7 +2,7 @@
 #include "device_launch_parameters.h"
 
 #include <stdio.h>
-
+#include <malloc.h>
 //距离计算函数
 //X：输入点
 //R：参考点
@@ -44,7 +44,7 @@ int main()
 {
 	int const N = 300000;//点数
 	float R = 6.0f;//参考点
-	float D[N] = { 0 };//计算结果
+	float* D  =  (float*)malloc(N*sizeof(float));//计算结果
 	float* dev_D = 0;
 
 	//GPU状态检测
